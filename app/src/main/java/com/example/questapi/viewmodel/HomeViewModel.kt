@@ -12,15 +12,14 @@ import okio.IOException
 import retrofit2.HttpException
 
 sealed interface StatusUiSiswa {
-    data class Success(val siswa: List<DataSiswa> = listOf()) : StatusUiSiswa
+    data class Success(val siswa: List<DataSiswa>) : StatusUiSiswa
     object Error : StatusUiSiswa
     object Loading : StatusUiSiswa
 }
-
-class HomeViewModel(private val repositoryDataSiswa: RepositoryDataSiswa):
-    ViewModel(){
+class HomeViewModel(private val repositoryDataSiswa: RepositoryDataSiswa) :
+    ViewModel() {
     var listSiswa: StatusUiSiswa by mutableStateOf(StatusUiSiswa.Loading)
-    private set
+        private set
 
     init{
         loadSiswa()
@@ -32,10 +31,9 @@ class HomeViewModel(private val repositoryDataSiswa: RepositoryDataSiswa):
             listSiswa = try {
                 StatusUiSiswa.Success(repositoryDataSiswa
                     .getDataSiswa())
-            }catch (e: IOException){
+            } catch (e: IOException) {
                 StatusUiSiswa.Error
-            }
-            catch (e: HttpException){
+            } catch (e: HttpException) {
                 StatusUiSiswa.Error
             }
         }

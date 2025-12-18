@@ -13,15 +13,16 @@ interface ContainerApp {
     val repositoryDataSiswa : RepositoryDataSiswa
 }
 
-class DefaultContainerApp : ContainerApp{
+class DefaultContainerApp : ContainerApp {
     private val baseurl = "http://10.0.2.2/tiUMY/"
 
     val logging = HttpLoggingInterceptor().apply {
         level = HttpLoggingInterceptor.Level.BODY
     }
     val klien = OkHttpClient.Builder()
-        .addInterceptor (logging)
+        .addInterceptor(logging)
         .build()
+
     private val retrofit: Retrofit = Retrofit.Builder()
         .baseUrl(baseurl)
         .addConverterFactory(
@@ -39,7 +40,8 @@ class DefaultContainerApp : ContainerApp{
     }
 
     override val repositoryDataSiswa: RepositoryDataSiswa by lazy {
-        JaringanRepositoryDataSiswa(retrofitService) }
+        JaringanRepositoryDataSiswa(retrofitService)
+    }
 }
 
 class AplikasiDataSiswa : Application() {
