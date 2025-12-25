@@ -69,7 +69,7 @@ fun DetailSiswaScreen(
                 modifier = Modifier.padding(dimensionResource(id = R.dimen.padding_large))
             ) {
                 Icon(
-                    ImageVector = Icons.Default.Edit,
+                    imageVector = Icons.Default.Edit,
                     contentDescription = stringResource(id = R.string.update),
                 )
             }
@@ -81,7 +81,7 @@ fun DetailSiswaScreen(
             statusUiDetail = viewModel.statusUIDetail,
             onDelete = { coroutineScope.launch {
                 viewModel.hapusSatuSiswa()
-                navigateBack
+                navigateBack()
             }},
             modifier = Modifier
                 .padding(innerPadding)
