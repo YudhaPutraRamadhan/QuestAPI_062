@@ -2,6 +2,7 @@ package com.example.questapi.viewmodel
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -12,11 +13,11 @@ import com.example.questapi.modeldata.toUiStateSiswa
 import com.example.questapi.repositori.RepositoryDataSiswa
 import com.example.questapi.uicontroller.route.DestinasiDetail
 import kotlinx.coroutines.launch
-import okhttp3.Response
+import retrofit2.Response
 
 class EditViewModel(savedStateHandle: SavedStateHandle, private val repositoryDataSiswa:
 RepositoryDataSiswa): ViewModel() {
-    val uiStateSiswa by mutableStateOf(UIStateSiswa())
+    var uiStateSiswa by mutableStateOf(UIStateSiswa())
         private set
 
     private val idSiswa: Int = checkNotNull(savedStateHandle[DestinasiDetail.itemIdArg])
